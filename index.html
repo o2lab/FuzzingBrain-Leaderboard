@@ -1,164 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRS-Leaderboard</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 2em;
-        background-color: #f4f6f8;
-    }
-    h1 {
-        color: #222;
-        text-align: center;
-        margin-bottom: 1em;
-    }
-    select {
-        display: block;
-        margin: 0 auto 1.5em;
-        padding: 6px 12px;
-        font-size: 14px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-    }
-    table {
-        width: 90%;
-        margin: 0 auto;
-        border-collapse: collapse;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        background-color: white;
-    }
-    th {
-        background: linear-gradient(90deg, #007bff, #00a2ff);
-        color: white;
-        text-transform: uppercase;
-        font-size: 14px;
-        letter-spacing: 1px;
-        padding: 14px;
-    }
-    td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #eee;
-    }
-    tr:nth-child(even) td {
-        background-color: #f9f9f9;
-    }
-    tr:hover td {
-        background-color: #eaf4ff;
-    }
-    .rank-1 td:first-child { color: gold; font-weight: bold; font-size: 18px; }
-    .rank-2 td:first-child { color: silver; font-weight: bold; font-size: 18px; }
-    .rank-3 td:first-child { color: #cd7f32; font-weight: bold; font-size: 18px; }
-    details summary { cursor: pointer; font-weight: 600; color: #007bff; }
-    .details-container {
-        padding: 8px 0 0 20px;
-        font-size: 0.9em;
-        color: #555;
-    }
-    .description-box {
-        width: 85%;
-        margin: 20px auto 0;
-        padding: 15px 20px;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-        font-size: 14px;
-        line-height: 1.5;
-        color: #444;
-    }
-    .description-box h2 { margin-top: 0; font-size: 16px; color: #007bff; }
-
-    .leaderboard {
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        display: none;
-    }
-    .leaderboard.show {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 2em;
+            background-color: #f4f6f8;
+        }
+        h1 {
+            color: #222;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        select {
+            display: block;
+            margin: 0 auto 1.5em auto;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #fff;
+            cursor: pointer;
+        }
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        th {
+            background: linear-gradient(90deg, #007bff, #00a2ff);
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            padding: 14px;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+        tr:hover td {
+            background-color: #eaf4ff;
+        }
+        .rank-1 td:first-child {
+            color: gold;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .rank-2 td:first-child {
+            color: silver;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .rank-3 td:first-child {
+            color: #cd7f32;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #007bff;
+        }
+        .details-container {
+            padding: 8px 0 0 20px;
+            font-size: 0.9em;
+            color: #555;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-3px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Description box */
+        .description-box {
+            width: 85%;
+            margin: 20px auto 0;
+            padding: 15px 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+        }
+        .description-box h2 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #007bff;
+        }
+        /* Leaderboard switching animation */
+        .leaderboard {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: none;
+        }
+        .leaderboard.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
+    <h1>CRS-Leaderboard</h1>
 
-<h1>CRS-Leaderboard</h1>
+    <select id="modeSelector" onchange="switchMode()">
+        <option value="full">Full Mode</option>
+        <option value="delta">Delta Mode</option>
+        <option value="both">Both Mode</option>
+    </select>
 
-<select id="modeSelector" onchange="switchMode()">
-    <option value="full">Full Mode</option>
-    <option value="delta">Delta Mode</option>
-    <option value="both">Both Mode</option>
-</select>
+    <!-- Full Mode -->
+    <div id="fullMode" class="leaderboard show">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rank-1">
+                    <td>1 🏆</td>
+                    <td>
+                        <details>
+                            <summary>CLAUDE_MODEL_SONNET_4</summary>
+                            <div class="details-container">
+                                <p><strong>Total:</strong> 18</p>
+                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
+                                <p><strong>Patch Found:</strong> zookeeper integration</p>
+                            </div>
+                        </details>
+                    </td>
+                    <td>18</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<!-- Full Mode -->
-<div id="fullMode" class="leaderboard show">
-    <table>
-        <thead><tr><th>Rank</th><th>Model</th><th>Total Score</th></tr></thead>
-        <tbody>
-            <tr class="rank-1">
-                <td>1 🏆</td>
-                <td><details><summary>CLAUDE_MODEL_SONNET_4</summary>
-                <div class="details-container"><p><strong>Total:</strong> 18</p></div></details></td>
-                <td>18</td>
-            </tr>
-            <tr class="rank-2"><td>2 🥈</td><td>Example Model</td><td>15</td></tr>
-        </tbody>
-    </table>
-</div>
+    <!-- Delta Mode -->
+    <div id="deltaMode" class="leaderboard">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rank-1">
+                    <td>1 🏆</td>
+                    <td>
+                        <details>
+                            <summary>DELTA_MODEL_XYZ</summary>
+                            <div class="details-container">
+                                <p><strong>Total:</strong> 10</p>
+                                <p><strong>POV Found:</strong> projectA projectB</p>
+                                <p><strong>Patch Found:</strong> projectA</p>
+                            </div>
+                        </details>
+                    </td>
+                    <td>10</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<!-- Delta Mode -->
-<div id="deltaMode" class="leaderboard">
-    <table>
-        <thead><tr><th>Rank</th><th>Model</th><th>Total Score</th></tr></thead>
-        <tbody>
-            <tr class="rank-1"><td>1 🏆</td><td>Another Model</td><td>20</td></tr>
-            <tr class="rank-2"><td>2 🥈</td><td>Example Model 2</td><td>16</td></tr>
-        </tbody>
-    </table>
-</div>
+    <!-- Both Mode -->
+    <div id="bothMode" class="leaderboard">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rank-1">
+                    <td>1 🏆</td>
+                    <td>
+                        <details>
+                            <summary>BOTH_MODEL_ABC</summary>
+                            <div class="details-container">
+                                <p><strong>Total:</strong> 28</p>
+                                <p><strong>POV Found:</strong> zookeeper projectX</p>
+                                <p><strong>Patch Found:</strong> projectX projectY</p>
+                            </div>
+                        </details>
+                    </td>
+                    <td>28</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<!-- Both Mode -->
-<div id="bothMode" class="leaderboard">
-    <table>
-        <thead><tr><th>Rank</th><th>Model</th><th>Total Score</th></tr></thead>
-        <tbody>
-            <tr class="rank-1"><td>1 🏆</td><td>Combined Model</td><td>30</td></tr>
-            <tr class="rank-2"><td>2 🥈</td><td>Example Model 3</td><td>25</td></tr>
-        </tbody>
-    </table>
-</div>
+    <div class="description-box">
+        <h2>About This Leaderboard</h2>
+        <p>
+            This leaderboard displays the top models and their performance across different AIXCC challenges. 
+            Click on a model's name to view detailed scores for each challenge. 
+            Scores are updated regularly to reflect the most recent results.
+            Scoring rule: Total score = POVs × 2 + patches × 6.
+        </p>
+    </div>
 
-<div class="description-box">
-    <h2>About This Leaderboard</h2>
-    <p>
-        This leaderboard displays different ranking modes: <strong>Full</strong>, <strong>Delta</strong>, and <strong>Both</strong>.
-        Select a mode from the dropdown to view the corresponding results.
-    </p>
-</div>
-
-<script>
-function switchMode() {
-    let mode = document.getElementById("modeSelector").value;
-    let boards = document.querySelectorAll(".leaderboard");
-    boards.forEach(board => {
-        board.classList.remove("show");
-        setTimeout(() => {
-            board.style.display = "none";
-        }, 400);
-    });
-
-    let target = document.getElementById(mode + "Mode");
-    target.style.display = "block";
-    setTimeout(() => {
-        target.classList.add("show");
-    }, 10);
-}
-</script>
-
+    <script>
+        function switchMode() {
+            let mode = document.getElementById("modeSelector").value;
+            let boards = document.querySelectorAll(".leaderboard");
+            boards.forEach(board => {
+                board.classList.remove("show");
+            });
+            document.getElementById(mode + "Mode").classList.add("show");
+        }
+    </script>
 </body>
 </html>
