@@ -37,6 +37,11 @@
         tr:hover {
             background-color: #f1f1f1;
         }
+        .details-container {
+            padding: 10px 0 0 30px;
+            font-size: 0.9em;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -46,24 +51,51 @@
             <tr>
                 <th>排名</th>
                 <th>玩家名称</th>
-                <th>分数</th>
+                <th>总分</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>1</td>
-                <td>张三</td>
-                <td>1000</td>
+                <td>
+                    <details>
+                        <summary>玩家1</summary>
+                        <div class="details-container">
+                            <p><strong>总分:</strong> 10</p>
+                            <p><strong>关卡1:</strong> 攻击 5分, 防御 1分</p>
+                            <p><strong>关卡2:</strong> 攻击 2分, 防御 2分</p>
+                        </div>
+                    </details>
+                </td>
+                <td>10</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>李四</td>
-                <td>950</td>
+                <td>
+                    <details>
+                        <summary>玩家2</summary>
+                        <div class="details-container">
+                            <p><strong>总分:</strong> 9</p>
+                            <p><strong>关卡1:</strong> 攻击 4分, 防御 2分</p>
+                            <p><strong>关卡2:</strong> 攻击 2分, 防御 1分</p>
+                        </div>
+                    </details>
+                </td>
+                <td>9</td>
             </tr>
             <tr>
                 <td>3</td>
-                <td>王五</td>
-                <td>900</td>
+                <td>
+                    <details>
+                        <summary>玩家3</summary>
+                        <div class="details-container">
+                            <p><strong>总分:</strong> 8</p>
+                            <p><strong>关卡1:</strong> 攻击 3分, 防御 1分</p>
+                            <p><strong>关卡2:</strong> 攻击 2分, 防御 2分</p>
+                        </div>
+                    </details>
+                </td>
+                <td>8</td>
             </tr>
             </tbody>
     </table>
