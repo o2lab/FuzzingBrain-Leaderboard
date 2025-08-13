@@ -1,103 +1,134 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>排行榜</title>
+    <title>Leaderboard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 2em;
-            background-color: #f4f4f4;
+            background-color: #f4f6f8;
         }
         h1 {
-            color: #333;
+            color: #222;
             text-align: center;
+            margin-bottom: 1.5em;
         }
         table {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
             border-collapse: collapse;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
         }
         th {
-            background-color: #007bff;
-            color: #fff;
+            background: linear-gradient(90deg, #007bff, #00a2ff);
+            color: white;
             text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            padding: 14px;
         }
-        tr:nth-child(even) {
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:nth-child(even) td {
             background-color: #f9f9f9;
         }
-        tr:hover {
-            background-color: #f1f1f1;
+        tr:hover td {
+            background-color: #eaf4ff;
+        }
+        /* Special colors for top 3 */
+        .rank-1 td:first-child {
+            color: gold;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .rank-2 td:first-child {
+            color: silver;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .rank-3 td:first-child {
+            color: #cd7f32; /* bronze */
+            font-weight: bold;
+            font-size: 18px;
+        }
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #007bff;
         }
         .details-container {
-            padding: 10px 0 0 30px;
+            padding: 8px 0 0 20px;
             font-size: 0.9em;
             color: #555;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-3px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <h1>排行榜</h1>
+    <h1>Leaderboard</h1>
     <table>
         <thead>
             <tr>
-                <th>排名</th>
-                <th>玩家名称</th>
-                <th>总分</th>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Total Score</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
+            <tr class="rank-1">
+                <td>1 🏆</td>
                 <td>
                     <details>
-                        <summary>玩家1</summary>
+                        <summary>Player 1</summary>
                         <div class="details-container">
-                            <p><strong>总分:</strong> 10</p>
-                            <p><strong>关卡1:</strong> 攻击 5分, 防御 1分</p>
-                            <p><strong>关卡2:</strong> 攻击 2分, 防御 2分</p>
+                            <p><strong>Total:</strong> 10</p>
+                            <p><strong>Level 1:</strong> Attack 5, Defense 1</p>
+                            <p><strong>Level 2:</strong> Attack 2, Defense 2</p>
                         </div>
                     </details>
                 </td>
                 <td>10</td>
             </tr>
-            <tr>
-                <td>2</td>
+            <tr class="rank-2">
+                <td>2 🥈</td>
                 <td>
                     <details>
-                        <summary>玩家2</summary>
+                        <summary>Player 2</summary>
                         <div class="details-container">
-                            <p><strong>总分:</strong> 9</p>
-                            <p><strong>关卡1:</strong> 攻击 4分, 防御 2分</p>
-                            <p><strong>关卡2:</strong> 攻击 2分, 防御 1分</p>
+                            <p><strong>Total:</strong> 9</p>
+                            <p><strong>Level 1:</strong> Attack 4, Defense 2</p>
+                            <p><strong>Level 2:</strong> Attack 2, Defense 1</p>
                         </div>
                     </details>
                 </td>
                 <td>9</td>
             </tr>
-            <tr>
-                <td>3</td>
+            <tr class="rank-3">
+                <td>3 🥉</td>
                 <td>
                     <details>
-                        <summary>玩家3</summary>
+                        <summary>Player 3</summary>
                         <div class="details-container">
-                            <p><strong>总分:</strong> 8</p>
-                            <p><strong>关卡1:</strong> 攻击 3分, 防御 1分</p>
-                            <p><strong>关卡2:</strong> 攻击 2分, 防御 2分</p>
+                            <p><strong>Total:</strong> 8</p>
+                            <p><strong>Level 1:</strong> Attack 3, Defense 1</p>
+                            <p><strong>Level 2:</strong> Attack 2, Defense 2</p>
                         </div>
                     </details>
                 </td>
                 <td>8</td>
             </tr>
-            </tbody>
+        </tbody>
     </table>
 </body>
 </html>
