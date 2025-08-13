@@ -73,15 +73,32 @@
             from { opacity: 0; transform: translateY(-3px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Description box */
+        .description-box {
+            width: 85%;
+            margin: 20px auto 0;
+            padding: 15px 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+        }
+        .description-box h2 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
-    <h1>Leaderboard</h1>
+    <h1>CRS-Leaderboard</h1>
     <table>
         <thead>
             <tr>
                 <th>Rank</th>
-                <th>Player</th>
+                <th>Model</th>
                 <th>Total Score</th>
             </tr>
         </thead>
@@ -130,5 +147,14 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="description-box">
+        <h2>About This Leaderboard</h2>
+        <p>
+            This leaderboard displays the top models and their performance across different AIXCC challenges. 
+            Click on a model's name to view detailed scores for each challenge. 
+            Scores are updated regularly to reflect the most recent results.
+        </p>
+    </div>
 </body>
 </html>
