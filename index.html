@@ -111,6 +111,21 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 20px 0;
+        }
+        .error {
+            text-align: center;
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            width: 85%;
+        }
     </style>
 </head>
 <body>
@@ -124,173 +139,17 @@
 
     <!-- Full Mode -->
     <div id="fullMode" class="leaderboard show">
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Model</th>
-                    <th>Total Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rank-1">
-                    <td>1 🏆</td>
-                    <td>
-                        <details>
-                            <summary>CLAUDE_MODEL_SONNET_4</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 18</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper integration</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>18</td>
-                </tr>
-                <tr class="rank-2">
-                <td>2 🥈</td>
-                    <td>
-                        <details>
-                            <summary>CLAUDE_MODEL_OPUS_4</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 18</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper integration</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>18</td>
-                </tr>
-                <tr class="rank-3">
-                    <td>3 🥉</td>
-                    <td>
-                        <details>
-                            <summary>GEMINI_MODEL_PRO_25_0506</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 12</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>12</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="loading">Loading Full Mode data...</div>
     </div>
 
     <!-- Delta Mode -->
     <div id="deltaMode" class="leaderboard">
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Model</th>
-                    <th>Total Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rank-1">
-                    <td>1 🏆</td>
-                    <td>
-                        <details>
-                            <summary>CLAUDE_MODEL_SONNET_4</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 18</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper integration</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>18</td>
-                </tr>
-                <tr class="rank-2">
-                <td>2 🥈</td>
-                    <td>
-                        <details>
-                            <summary>CLAUDE_MODEL_OPUS_4</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 18</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper integration</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>18</td>
-                </tr>
-                <tr class="rank-3">
-                    <td>3 🥉</td>
-                    <td>
-                        <details>
-                            <summary>GEMINI_MODEL_PRO_25_0506</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 12</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>12</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="loading">Loading Delta Mode data...</div>
     </div>
 
     <!-- Both Mode -->
     <div id="bothMode" class="leaderboard">
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Model</th>
-                    <th>Total Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rank-1">
-                    <td>1 🏆</td>
-                    <td>
-                        <details>
-                            <summary>CLAUDE_MODEL_SONNET_4</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 18</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper integration</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>18</td>
-                </tr>
-                <tr class="rank-2">
-                <td>2 🥈</td>
-                    <td>
-                        <details>
-                            <summary>CLAUDE_MODEL_OPUS_4</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 18</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper integration</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>18</td>
-                </tr>
-                <tr class="rank-3">
-                    <td>3 🥉</td>
-                    <td>
-                        <details>
-                            <summary>GEMINI_MODEL_PRO_25_0506</summary>
-                            <div class="details-container">
-                                <p><strong>Total:</strong> 12</p>
-                                <p><strong>POV Found:</strong> zookeeper libxml2 integration</p>
-                                <p><strong>Patch Found:</strong> zookeeper</p>
-                            </div>
-                        </details>
-                    </td>
-                    <td>12</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="loading">Loading Both Mode data...</div>
     </div>
 
     <div class="description-box">
@@ -304,14 +163,172 @@
     </div>
 
     <script>
-        function switchMode() {
-            let mode = document.getElementById("modeSelector").value;
-            let boards = document.querySelectorAll(".leaderboard");
+        // CSV file mappings for different modes
+        const csvFiles = {
+            full: './data/full_mode.csv',
+            delta: './data/delta_mode.csv',
+            both: './data/both_mode.csv'
+        };
+
+        // Cache for loaded data
+        const dataCache = {};
+
+        // Parse CSV string to array of objects
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const data = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim());
+                const row = {};
+                headers.forEach((header, index) => {
+                    row[header] = values[index] || '';
+                });
+                data.push(row);
+            }
+            
+            return data;
+        }
+
+        // Generate rank emoji
+        function getRankEmoji(rank) {
+            switch(rank) {
+                case 1: return '🏆';
+                case 2: return '🥈';
+                case 3: return '🥉';
+                default: return '';
+            }
+        }
+
+        // Create leaderboard table from data
+        function createLeaderboardTable(data, modeId) {
+            if (!data || data.length === 0) {
+                return '<div class="error">No data available for this mode.</div>';
+            }
+
+            // Sort data by total score (descending)
+            const sortedData = data.sort((a, b) => {
+                const scoreA = parseInt(a.TotalScore || a['Total Score'] || 0);
+                const scoreB = parseInt(b.TotalScore || b['Total Score'] || 0);
+                return scoreB - scoreA;
+            });
+
+            let tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Model</th>
+                            <th>Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            sortedData.forEach((row, index) => {
+                const rank = index + 1;
+                const rankClass = rank <= 3 ? `rank-${rank}` : '';
+                const rankEmoji = getRankEmoji(rank);
+                
+                const modelName = row.Model || row.ModelName || 'Unknown Model';
+                const totalScore = row.TotalScore || row['Total Score'] || 0;
+                const povFound = row.POVFound || row['POV Found'] || '';
+                const patchFound = row.PatchFound || row['Patch Found'] || '';
+                const total = row.Total || '';
+
+                tableHTML += `
+                    <tr class="${rankClass}">
+                        <td>${rank} ${rankEmoji}</td>
+                        <td>
+                            <details>
+                                <summary>${modelName}</summary>
+                                <div class="details-container">
+                                    <p><strong>Total:</strong> ${total}</p>
+                                    <p><strong>POV Found:</strong> ${povFound}</p>
+                                    <p><strong>Patch Found:</strong> ${patchFound}</p>
+                                </div>
+                            </details>
+                        </td>
+                        <td>${totalScore}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+
+            return tableHTML;
+        }
+
+        // Load CSV data for a specific mode
+        async function loadCSVData(mode) {
+            if (dataCache[mode]) {
+                return dataCache[mode];
+            }
+
+            try {
+                const response = await fetch(csvFiles[mode]);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                dataCache[mode] = data;
+                return data;
+            } catch (error) {
+                console.error(`Error loading ${mode} data:`, error);
+                return null;
+            }
+        }
+
+        // Update leaderboard display
+        async function updateLeaderboard(mode) {
+            const container = document.getElementById(mode + 'Mode');
+            container.innerHTML = '<div class="loading">Loading data...</div>';
+
+            const data = await loadCSVData(mode);
+            
+            if (data) {
+                container.innerHTML = createLeaderboardTable(data, mode);
+            } else {
+                container.innerHTML = `
+                    <div class="error">
+                        Failed to load data for ${mode} mode. 
+                        Please check if the CSV file exists at: ${csvFiles[mode]}
+                    </div>
+                `;
+            }
+        }
+
+        // Switch between modes
+        async function switchMode() {
+            const mode = document.getElementById("modeSelector").value;
+            const boards = document.querySelectorAll(".leaderboard");
+            
             boards.forEach(board => {
                 board.classList.remove("show");
             });
-            document.getElementById(mode + "Mode").classList.add("show");
+            
+            const targetBoard = document.getElementById(mode + "Mode");
+            targetBoard.classList.add("show");
+            
+            // Load data if not already loaded
+            if (!dataCache[mode]) {
+                await updateLeaderboard(mode);
+            }
         }
+
+        // Initialize the page
+        async function initializePage() {
+            // Load initial data for the default mode (full)
+            await updateLeaderboard('full');
+        }
+
+        // Start the application when page loads
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
