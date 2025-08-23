@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>CRS Leaderboard</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,15 +15,37 @@
             text-align: center;
             margin-bottom: 1em;
         }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 2em;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .control-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
         select {
-            display: block;
-            margin: 0 auto 1.5em auto;
             padding: 8px 12px;
             font-size: 14px;
             border-radius: 6px;
             border: 1px solid #ccc;
             background: #fff;
             cursor: pointer;
+            min-width: 150px;
+        }
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
         }
         table {
             width: 90%;
@@ -41,6 +63,7 @@
             font-size: 14px;
             letter-spacing: 1px;
             padding: 14px;
+            text-align: left;
         }
         td {
             padding: 12px 15px;
@@ -71,18 +94,28 @@
             cursor: pointer;
             font-weight: 600;
             color: #007bff;
+            padding: 5px 0;
+        }
+        details summary:hover {
+            color: #0056b3;
         }
         .details-container {
-            padding: 8px 0 0 20px;
+            padding: 10px 0 0 20px;
             font-size: 0.9em;
             color: #555;
             animation: fadeIn 0.3s ease-in-out;
+            line-height: 1.6;
+        }
+        .details-container p {
+            margin: 5px 0;
+        }
+        .details-container strong {
+            color: #333;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-3px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Description box */
         .description-box {
             width: 85%;
             margin: 20px auto 0;
@@ -99,18 +132,6 @@
             font-size: 16px;
             color: #007bff;
         }
-        /* Leaderboard switching animation */
-        .leaderboard {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            display: none;
-        }
-        .leaderboard.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
         .loading {
             text-align: center;
             color: #666;
@@ -126,52 +147,69 @@
             margin: 20px auto;
             width: 85%;
         }
+        .current-mode {
+            text-align: center;
+            color: #007bff;
+            font-weight: 600;
+            margin: 10px 0;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
-    <h1>CRS-Leaderboard</h1>
+    <h1>CRS Leaderboard</h1>
 
-    <select id="modeSelector" onchange="switchMode()">
-        <option value="full">Full Mode</option>
-        <option value="delta">Delta Mode</option>
-        <option value="both">Both Mode</option>
-    </select>
-
-    <!-- Full Mode -->
-    <div id="fullMode" class="leaderboard show">
-        <div class="loading">Loading Full Mode data...</div>
+    <div class="controls">
+        <div class="control-group">
+            <label for="rankingType">Ranking Type:</label>
+            <select id="rankingType" onchange="updateRanking()">
+                <option value="All">Overall Ranking (All Modes)</option>
+                <option value="programming">By Programming Language</option>
+                <option value="challenge">By Challenge Type</option>
+            </select>
+        </div>
+        
+        <div class="control-group" id="programmingSelector" style="display: none;">
+            <label for="programmingMode">Programming Language:</label>
+            <select id="programmingMode" onchange="updateRanking()">
+                <option value="C-Mode">C-Mode</option>
+                <option value="Java-Mode">Java-Mode</option>
+            </select>
+        </div>
+        
+        <div class="control-group" id="challengeSelector" style="display: none;">
+            <label for="challengeMode">Challenge Type:</label>
+            <select id="challengeMode" onchange="updateRanking()">
+                <option value="Full-Mode">Full-Mode</option>
+                <option value="Delta-Mode">Delta-Mode</option>
+            </select>
+        </div>
     </div>
 
-    <!-- Delta Mode -->
-    <div id="deltaMode" class="leaderboard">
-        <div class="loading">Loading Delta Mode data...</div>
-    </div>
+    <div class="current-mode" id="currentMode">Currently showing: Overall Ranking (All Modes)</div>
 
-    <!-- Both Mode -->
-    <div id="bothMode" class="leaderboard">
-        <div class="loading">Loading Both Mode data...</div>
+    <div id="leaderboard">
+        <div class="loading">Loading leaderboard data...</div>
     </div>
 
     <div class="description-box">
         <h2>About This Leaderboard</h2>
         <p>
-            This leaderboard displays the top models and their performance across different AIXCC challenges. 
-            Click on a model's name to view detailed scores for each challenge. 
-            Scores are updated regularly to reflect the most recent results.
-            Scoring rule: Total score = POVs × 2 + patches × 6.
+            This leaderboard displays the performance of AI models across different CRS challenges. 
+            Models are ranked by their total scores, which are calculated based on their ability to find 
+            vulnerabilities (POVs) and generate patches. Click on any model name to view detailed 
+            information about the specific vulnerabilities found and patches generated.
+        </p>
+        <p>
+            <strong>Scoring:</strong> Total score = POVs × 2 + patches × 6
         </p>
     </div>
 
     <script>
-        // CSV file mappings for different modes
-        const csvFiles = {
-            full: './data/full_mode.csv',
-            delta: './data/delta_mode.csv',
-            both: './data/both_mode.csv'
-        };
-
-        // Cache for loaded data
-        const dataCache = {};
+        // Global variables
+        let allData = [];
+        let currentRankingType = 'All';
+        let currentSubMode = '';
 
         // Parse CSV string to array of objects
         function parseCSV(csvText) {
@@ -201,16 +239,28 @@
             }
         }
 
-        // Create leaderboard table from data
-        function createLeaderboardTable(data, modeId) {
+        // Filter data based on current ranking type and mode
+        function filterData() {
+            if (currentRankingType === 'All') {
+                return allData.filter(row => row.Mode === 'All');
+            } else if (currentRankingType === 'programming') {
+                return allData.filter(row => row.Mode === currentSubMode);
+            } else if (currentRankingType === 'challenge') {
+                return allData.filter(row => row.Mode === currentSubMode);
+            }
+            return [];
+        }
+
+        // Create leaderboard table from filtered data
+        function createLeaderboardTable(data) {
             if (!data || data.length === 0) {
-                return '<div class="error">No data available for this mode.</div>';
+                return '<div class="error">No data available for the selected mode.</div>';
             }
 
             // Sort data by total score (descending)
             const sortedData = data.sort((a, b) => {
-                const scoreA = parseInt(a.TotalScore || a['Total Score'] || 0);
-                const scoreB = parseInt(b.TotalScore || b['Total Score'] || 0);
+                const scoreA = parseInt(a.TotalScore || 0);
+                const scoreB = parseInt(b.TotalScore || 0);
                 return scoreB - scoreA;
             });
 
@@ -231,11 +281,10 @@
                 const rankClass = rank <= 3 ? `rank-${rank}` : '';
                 const rankEmoji = getRankEmoji(rank);
                 
-                const modelName = row.Model || row.ModelName || 'Unknown Model';
-                const totalScore = row.TotalScore || row['Total Score'] || 0;
-                const povFound = row.POVFound || row['POV Found'] || '';
-                const patchFound = row.PatchFound || row['Patch Found'] || '';
-                const total = row.Total || '';
+                const modelName = row.Model || 'Unknown Model';
+                const totalScore = row.TotalScore || 0;
+                const povFound = row['POV Found'] || '';
+                const patchFound = row['Patch Found'] || '';
 
                 tableHTML += `
                     <tr class="${rankClass}">
@@ -244,9 +293,10 @@
                             <details>
                                 <summary>${modelName}</summary>
                                 <div class="details-container">
-                                    <p><strong>Total:</strong> ${total}</p>
-                                    <p><strong>POV Found:</strong> ${povFound}</p>
-                                    <p><strong>Patch Found:</strong> ${patchFound}</p>
+                                    <p><strong>POV Found:</strong></p>
+                                    <p style="margin-left: 10px; font-family: monospace; font-size: 0.85em;">${povFound || 'None'}</p>
+                                    <p><strong>Patch Found:</strong></p>
+                                    <p style="margin-left: 10px; font-family: monospace; font-size: 0.85em;">${patchFound || 'None'}</p>
                                 </div>
                             </details>
                         </td>
@@ -263,68 +313,66 @@
             return tableHTML;
         }
 
-        // Load CSV data for a specific mode
-        async function loadCSVData(mode) {
-            if (dataCache[mode]) {
-                return dataCache[mode];
+        // Update the ranking display
+        function updateRanking() {
+            const rankingType = document.getElementById('rankingType').value;
+            const programmingSelector = document.getElementById('programmingSelector');
+            const challengeSelector = document.getElementById('challengeSelector');
+            const currentModeDiv = document.getElementById('currentMode');
+
+            // Hide all selectors initially
+            programmingSelector.style.display = 'none';
+            challengeSelector.style.display = 'none';
+
+            // Show appropriate selector and update current mode
+            if (rankingType === 'programming') {
+                programmingSelector.style.display = 'flex';
+                currentSubMode = document.getElementById('programmingMode').value;
+                currentModeDiv.textContent = `Currently showing: ${currentSubMode}`;
+            } else if (rankingType === 'challenge') {
+                challengeSelector.style.display = 'flex';
+                currentSubMode = document.getElementById('challengeMode').value;
+                currentModeDiv.textContent = `Currently showing: ${currentSubMode}`;
+            } else {
+                currentSubMode = '';
+                currentModeDiv.textContent = 'Currently showing: Overall Ranking (All Modes)';
             }
 
+            currentRankingType = rankingType;
+            
+            // Update the leaderboard
+            const filteredData = filterData();
+            const leaderboardDiv = document.getElementById('leaderboard');
+            leaderboardDiv.innerHTML = createLeaderboardTable(filteredData);
+        }
+
+        // Load CSV data
+        async function loadCSVData() {
             try {
-                const response = await fetch(csvFiles[mode]);
+                const response = await fetch('./data/results.csv');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const csvText = await response.text();
-                const data = parseCSV(csvText);
-                dataCache[mode] = data;
-                return data;
+                allData = parseCSV(csvText);
+                return true;
             } catch (error) {
-                console.error(`Error loading ${mode} data:`, error);
-                return null;
-            }
-        }
-
-        // Update leaderboard display
-        async function updateLeaderboard(mode) {
-            const container = document.getElementById(mode + 'Mode');
-            container.innerHTML = '<div class="loading">Loading data...</div>';
-
-            const data = await loadCSVData(mode);
-            
-            if (data) {
-                container.innerHTML = createLeaderboardTable(data, mode);
-            } else {
-                container.innerHTML = `
+                console.error('Error loading CSV data:', error);
+                document.getElementById('leaderboard').innerHTML = `
                     <div class="error">
-                        Failed to load data for ${mode} mode. 
-                        Please check if the CSV file exists at: ${csvFiles[mode]}
+                        Failed to load data. Please check if the CSV file exists at: ./data/results.csv
                     </div>
                 `;
-            }
-        }
-
-        // Switch between modes
-        async function switchMode() {
-            const mode = document.getElementById("modeSelector").value;
-            const boards = document.querySelectorAll(".leaderboard");
-            
-            boards.forEach(board => {
-                board.classList.remove("show");
-            });
-            
-            const targetBoard = document.getElementById(mode + "Mode");
-            targetBoard.classList.add("show");
-            
-            // Load data if not already loaded
-            if (!dataCache[mode]) {
-                await updateLeaderboard(mode);
+                return false;
             }
         }
 
         // Initialize the page
         async function initializePage() {
-            // Load initial data for the default mode (full)
-            await updateLeaderboard('full');
+            const success = await loadCSVData();
+            if (success) {
+                updateRanking();
+            }
         }
 
         // Start the application when page loads
