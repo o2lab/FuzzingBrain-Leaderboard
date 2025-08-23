@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRS Challenges - Detailed Information</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 2em;
+            background-color: #f4f6f8;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        h1 {
+            color: #222;
+            margin-bottom: 0.5em;
+        }
+        .nav-links {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background: #c82333;
+        }
+        .challenge-section {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .challenge-section h2 {
+            color: #dc3545;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .challenge-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .challenge-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .challenge-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .challenge-card p {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .challenge-type {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .type-c {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .type-java {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        .type-full {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+        .type-delta {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+        .description-box {
+            width: 85%;
+            margin: 20px auto;
+            padding: 15px 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+        }
+        .description-box h2 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CRS Challenges - Detailed Information</h1>
+        <div class="nav-links">
+            <a href="index.html">← Back to Leaderboard</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="description-box">
+        <h2>About CRS Challenges</h2>
+        <p>
+            The CRS (Code Review Security) challenges are designed to test AI models' capabilities in identifying 
+            security vulnerabilities and generating patches across different programming languages and challenge types. 
+            Each challenge focuses on specific security issues commonly found in real-world applications.
+        </p>
+    </div>
+
+    <div class="challenge-section">
+        <h2>C Language Challenges</h2>
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>curl-delta-01</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Buffer overflow vulnerability in curl library's URL parsing functionality.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Memory corruption, stack overflow</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>libxml2-delta-01</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> XML external entity (XXE) injection vulnerability in libxml2 parser.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> External entity processing, file disclosure</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>libxml2-delta-02</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Use-after-free vulnerability in XML node handling.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Memory corruption, arbitrary code execution</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>libexif-delta-01-exif-003</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Integer overflow in EXIF metadata parsing.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Buffer overflow, memory corruption</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>libexif-delta-01-exif-004</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Format string vulnerability in EXIF tag processing.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Format string attacks, information disclosure</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>sqlite3-delta-01</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> SQL injection vulnerability in prepared statement handling.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> SQL injection, data manipulation</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>sqlite3-delta-02</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Memory corruption in SQLite query execution.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Buffer overflow, database corruption</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>sqlite3-delta-03</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Use-after-free in SQLite transaction handling.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Memory corruption, crash</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>freerdp-delta-01</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Remote code execution vulnerability in FreeRDP protocol handling.</p>
+                <p><strong>Difficulty:</strong> Very High</p>
+                <p><strong>Common Issues:</strong> RCE, privilege escalation</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="challenge-section">
+        <h2>Java Language Challenges</h2>
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-full-01-vuln_0</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Path traversal vulnerability in Apache Tika file processing.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> File system access, information disclosure</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-full-01-vuln_6</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> XXE vulnerability in Tika XML parser configuration.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> External entity processing, server-side request forgery</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-full-01-vuln_7</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Deserialization vulnerability in Tika object handling.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Remote code execution, privilege escalation</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_0</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Zip slip vulnerability in Apache Commons Compress.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Path traversal, arbitrary file write</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_1</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Integer overflow in archive entry processing.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Memory exhaustion, denial of service</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_5</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Buffer overflow in compressed data handling.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Memory corruption, crash</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>zookeeper-delta-01</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Authentication bypass in ZooKeeper access control.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Unauthorized access, privilege escalation</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>zookeeper-delta-02</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Race condition in ZooKeeper node operations.</p>
+                <p><strong>Difficulty:</strong> High</p>
+                <p><strong>Common Issues:</strong> Data inconsistency, security bypass</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-delta-02</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Memory leak in Tika document processing.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Resource exhaustion, denial of service</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-delta-04</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Input validation bypass in Tika content extraction.</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Common Issues:</strong> Malicious content processing, data leakage</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-delta-05</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Null pointer dereference in Tika parser chain.</p>
+                <p><strong>Difficulty:</strong> Low</p>
+                <p><strong>Common Issues:</strong> Application crash, denial of service</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="challenge-section">
+        <h2>Challenge Types Overview</h2>
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <span class="challenge-type type-full">Full-Mode</span>
+                <h3>Full Challenges</h3>
+                <p><strong>Description:</strong> Complete vulnerability scenarios requiring comprehensive analysis.</p>
+                <p><strong>Scope:</strong> End-to-end security assessment</p>
+                <p><strong>Focus:</strong> Real-world attack vectors and exploitation</p>
+                <p><strong>Difficulty:</strong> High to Very High</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-delta">Delta-Mode</span>
+                <h3>Delta Challenges</h3>
+                <p><strong>Description:</strong> Incremental security patches and vulnerability fixes.</p>
+                <p><strong>Scope:</strong> Specific vulnerability remediation</p>
+                <p><strong>Focus:</strong> Code review and patch generation</p>
+                <p><strong>Difficulty:</strong> Medium to High</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-box">
+        <h2>Scoring System</h2>
+        <p>
+            <strong>POV (Proof of Vulnerability):</strong> 2 points each - Awarded for successfully identifying and demonstrating a security vulnerability.
+        </p>
+        <p>
+            <strong>Patch:</strong> 6 points each - Awarded for generating effective security patches that fix the identified vulnerabilities.
+        </p>
+        <p>
+            <strong>Total Score = (POVs × 2) + (Patches × 6)</strong>
+        </p>
+    </div>
+</body>
+</html> 
