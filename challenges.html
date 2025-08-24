@@ -9,6 +9,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 2em;
             background-color: #f4f6f8;
+            position: relative;
+        }
+        .logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
         }
         .header {
             text-align: center;
@@ -118,6 +133,8 @@
     </style>
 </head>
 <body>
+    <img src="fuzzingbrain.png" alt="FuzzingBrain Logo" class="logo">
+    
     <div class="header">
         <h1>CRS Challenges - Detailed Information</h1>
         <div class="nav-links">
@@ -142,73 +159,99 @@
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>curl-delta-01</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Buffer overflow vulnerability in curl library's URL parsing functionality.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Memory corruption, stack overflow</p>
+                <p><strong>Description:</strong> A null pointer dereference exists in the "verynormalprotocol" supported by Curl. It is triggered by the server writing a specific response to a client connection.</p>
+                <p><strong>Harness:</strong> 'curl_fuzzer_ws'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>curl-full-01</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Curl provides a feature that outputs meta-data about a file using HTTP-like headers while suppressing the body of the file in the output. Before outputting them, each header is passed to a function that formats the header and writes the resulting string to a buffer. The bug consists in adding a new header that is too large for the buffer and passing the size of the header, not the buffer, to the formatting function thus causing an out-of-bounds write.</p>
+                <p><strong>Harness:</strong> 'curl_fuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>libxml2-delta-01</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> XML external entity (XXE) injection vulnerability in libxml2 parser.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> External entity processing, file disclosure</p>
+                <p><strong>Description:</strong> Improper handling of '%' hexadecimal encoding when parsing the top comment leading to a heap-based buffer overflow.</p>
+                <p><strong>Harness:</strong> 'html'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>libxml2-delta-02</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Use-after-free vulnerability in XML node handling.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Memory corruption, arbitrary code execution</p>
+                <p><strong>Description:</strong> Failure to handle an error condition properly and prematurely freeing a buffer that is later freed.</p>
+                <p><strong>Harness:</strong> 'xml'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>libxml2-full-01</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Failure to correctly allocate sufficient data when handling embedded entities leads to a heap-based buffer overflow.</p>
+                <p><strong>Harness:</strong> 'xml'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>libexif-delta-01-exif-003</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Integer overflow in EXIF metadata parsing.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Buffer overflow, memory corruption</p>
+                <p><strong>Description:</strong> An out of bounds read in the indentification code leads to a heap-based buffer overflow.</p>
+                <p><strong>Harness:</strong> 'exif_loader_fuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>libexif-delta-01-exif-004</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Format string vulnerability in EXIF tag processing.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Format string attacks, information disclosure</p>
+                <p><strong>Description:</strong> This is a buffer over-read from a memcpy.</p>
+                <p><strong>Harness:</strong> 'exif_loader_fuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>libexif-delta-01-exif-005</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Heap buffer overflow caused by an insufficient bounds check.</p>
+                <p><strong>Harness:</strong> 'exif_from_data_fuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>sqlite3-delta-01</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> SQL injection vulnerability in prepared statement handling.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> SQL injection, data manipulation</p>
+                <p><strong>Description:</strong> The base85 module contains a decompression function which does not properly check for overflow, leading to a heap buffer overflow.</p>
+                <p><strong>Harness:</strong> 'customfuzz3'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>sqlite3-delta-02</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Memory corruption in SQLite query execution.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Buffer overflow, database corruption</p>
+                <p><strong>Description:</strong> The bug is a typo that causes a subtle interplay between various parts of the lsm1 module system in SQLite, eventually causing a null pointer dereference when a subsystem attempts to access a value that should have been set up correctly by the typo.</p>
+                <p><strong>Harness:</strong> 'customfuzz3'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>sqlite3-delta-03</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Use-after-free in SQLite transaction handling.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Memory corruption, crash</p>
+                <p><strong>Description:</strong> The ``lsmSortedDumpStructure`` function allows a user to view the internal structure of the LSM database. However, a sub-function, ``fileToString``, has an off-by-one error in which it intends to write a 0 byte to the end of a buffer, but accidentally writes it to one index past the end of the buffer instead.</p>
+                <p><strong>Harness:</strong> 'customfuzz3'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>sqlite3-full-01</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> An off-by-one error in the rot13 implementation allows for an out of bounds write leading to a stack buffer overflow.</p>
+                <p><strong>Harness:</strong> 'customfuzz3'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-c">C-Mode</span>
                 <h3>freerdp-delta-01</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Remote code execution vulnerability in FreeRDP protocol handling.</p>
-                <p><strong>Difficulty:</strong> Very High</p>
-                <p><strong>Common Issues:</strong> RCE, privilege escalation</p>
+                <p><strong>Description:</strong> Failure to handle an integer overflow and correctly allocate sufficient data when parsing large x509 files.</p>
+                <p><strong>Harness:</strong> 'TestFuzzCryptoCertificateDataSetPEM'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-c">C-Mode</span>
+                <h3>freerdp-full-01</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Changing a integer from unsigned to signed causes vulnerabilities from attacker specified data due to implicit C integer promotion issues, causing a heap buffer overflow</p>
+                <p><strong>Harness:</strong> 'TestFuzzCoreServer'</p>
             </div>
         </div>
     </div>
@@ -220,89 +263,134 @@
                 <span class="challenge-type type-java">Java-Mode</span>
                 <h3>tika-full-01-vuln_0</h3>
                 <p><strong>Type:</strong> Full Challenge</p>
-                <p><strong>Description:</strong> Path traversal vulnerability in Apache Tika file processing.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> File system access, information disclosure</p>
+                <p><strong>Description:</strong> XLIFF12Parser fails to securely configure the xml parser.</p>
+                <p><strong>Harness:</strong> 'XliffParserFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-full-01-vuln_1</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> The RTFParser deserializes Java objects embedded in RTF files without limitations.</p>
+                <p><strong>Harness:</strong> 'RTFParserFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
                 <h3>tika-full-01-vuln_6</h3>
                 <p><strong>Type:</strong> Full Challenge</p>
-                <p><strong>Description:</strong> XXE vulnerability in Tika XML parser configuration.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> External entity processing, server-side request forgery</p>
+                <p><strong>Description:</strong> TikaUntar fails to prevent zip slip/path traversal.</p>
+                <p><strong>Harness:</strong> 'TikaAppUntarringFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
                 <h3>tika-full-01-vuln_7</h3>
                 <p><strong>Type:</strong> Full Challenge</p>
-                <p><strong>Description:</strong> Deserialization vulnerability in Tika object handling.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Remote code execution, privilege escalation</p>
+                <p><strong>Description:</strong> TextAndCSVParser fetches user supplied URLs from crafted csv files.</p>
+                <p><strong>Harness:</strong> 'TextAndCSVParserFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
-                <h3>commons-compress-full-01-vuln_0</h3>
+                <h3>tika-full-01-vuln_8</h3>
                 <p><strong>Type:</strong> Full Challenge</p>
-                <p><strong>Description:</strong> Zip slip vulnerability in Apache Commons Compress.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Path traversal, arbitrary file write</p>
+                <p><strong>Description:</strong> ShellCodeDetector may execute unsanitized user-generated code.</p>
+                <p><strong>Harness:</strong> 'TikaAppUnpackerFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
-                <h3>commons-compress-full-01-vuln_1</h3>
-                <p><strong>Type:</strong> Full Challenge</p>
-                <p><strong>Description:</strong> Integer overflow in archive entry processing.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Memory exhaustion, denial of service</p>
-            </div>
-            <div class="challenge-card">
-                <span class="challenge-type type-java">Java-Mode</span>
-                <h3>commons-compress-full-01-vuln_5</h3>
-                <p><strong>Type:</strong> Full Challenge</p>
-                <p><strong>Description:</strong> Buffer overflow in compressed data handling.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Memory corruption, crash</p>
-            </div>
-            <div class="challenge-card">
-                <span class="challenge-type type-java">Java-Mode</span>
-                <h3>zookeeper-delta-01</h3>
+                <h3>tika-delta-01</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Authentication bypass in ZooKeeper access control.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Unauthorized access, privilege escalation</p>
-            </div>
-            <div class="challenge-card">
-                <span class="challenge-type type-java">Java-Mode</span>
-                <h3>zookeeper-delta-02</h3>
-                <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Race condition in ZooKeeper node operations.</p>
-                <p><strong>Difficulty:</strong> High</p>
-                <p><strong>Common Issues:</strong> Data inconsistency, security bypass</p>
+                <p><strong>Description:</strong> ExternalParser allows its command to be rewritten by user controlled data via the html parser.</p>
+                <p><strong>Harness:</strong> 'HtmlParserFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
                 <h3>tika-delta-02</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Memory leak in Tika document processing.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Resource exhaustion, denial of service</p>
+                <p><strong>Description:</strong> The M3U8Parser can be triggered to fetch the contents of a URL that an attacker may not have authorization to fetch.</p>
+                <p><strong>Harness:</strong> 'M3U8ParserFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>tika-delta-03</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> ThreeDXMLParser fails to secure the XMLParser and is vulnerable to XXE and other XML security vulnerabilities.</p>
+                <p><strong>Harness:</strong> 'ThreeDXMLParserFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
                 <h3>tika-delta-04</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Input validation bypass in Tika content extraction.</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Common Issues:</strong> Malicious content processing, data leakage</p>
+                <p><strong>Description:</strong> New feature using the RUnpackExtractor fails to prevent path traversal.</p>
+                <p><strong>Harness:</strong> 'TikaAppRUnpackerFuzzer'</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-java">Java-Mode</span>
                 <h3>tika-delta-05</h3>
                 <p><strong>Type:</strong> Delta Challenge</p>
-                <p><strong>Description:</strong> Null pointer dereference in Tika parser chain.</p>
-                <p><strong>Difficulty:</strong> Low</p>
-                <p><strong>Common Issues:</strong> Application crash, denial of service</p>
+                <p><strong>Description:</strong> Tika-app fails to check for zip slip after url decoding a target path name.</p>
+                <p><strong>Harness:</strong> 'TikaAppUnpackerFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_0</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> If a zip file has a comment that starts with http or https, the ZipFile requests the contents from that server and replaces the comment in the ZipFile object.</p>
+                <p><strong>Harness:</strong> 'CompressZipFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_1</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> If a gzip file has a specific time, then the stored file name is executed as a command.</p>
+                <p><strong>Harness:</strong> 'CompressorGzipFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_2</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> If a tar entry's name looks like a Java serialized object and the user name is "eMezilaireseD", then this code deserializes the object.</p>
+                <p><strong>Harness:</strong> 'CompressTarFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-full-01-vuln_5</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> Failure to properly handle archive name contents allows for zip slip / path traversal.</p>
+                <p><strong>Harness:</strong> 'ExpanderFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-delta-02</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Some compression formats may build large tables in memory before decompressing a file based on information in the compressed file. A very small crafted file may cause a decompressor to allocate GBs of memory unless a limit is set.</p>
+                <p><strong>Harness:</strong> 'ExpanderFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>commons-compress-delta-03</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> This reintroduces a variant of CVE-2023-42503. Java's BigDecimal is vulnerable to a DoS on very high precision numbers. This modifies the regex that was put in place to defend against CVE-2023-42503 so that the BigDecimal DoS attack is available.</p>
+                <p><strong>Harness:</strong> 'CompressTarFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>zookeeper-delta-01</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Infinite loop triggered by crafted ipv6 address.</p>
+                <p><strong>Harness:</strong> 'MessageTrackerPeekReceivedFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>zookeeper-delta-02</h3>
+                <p><strong>Type:</strong> Delta Challenge</p>
+                <p><strong>Description:</strong> Using java's BitSet can cause an OutOfMemoryError/DoS.</p>
+                <p><strong>Harness:</strong> 'MultiProcessTxnFuzzer'</p>
+            </div>
+            <div class="challenge-card">
+                <span class="challenge-type type-java">Java-Mode</span>
+                <h3>zookeeper-full-01</h3>
+                <p><strong>Type:</strong> Full Challenge</p>
+                <p><strong>Description:</strong> A carefully crafted set of transactions can trigger unsafe object deserializattion.</p>
+                <p><strong>Harness:</strong> 'MultiProcessTxnFuzzer'</p>
             </div>
         </div>
     </div>
@@ -313,18 +401,12 @@
             <div class="challenge-card">
                 <span class="challenge-type type-full">Full-Mode</span>
                 <h3>Full Challenges</h3>
-                <p><strong>Description:</strong> Complete vulnerability scenarios requiring comprehensive analysis.</p>
-                <p><strong>Scope:</strong> End-to-end security assessment</p>
-                <p><strong>Focus:</strong> Real-world attack vectors and exploitation</p>
-                <p><strong>Difficulty:</strong> High to Very High</p>
+                <p><strong>Description:</strong> The challenge source code is the modified basis.</p>
             </div>
             <div class="challenge-card">
                 <span class="challenge-type type-delta">Delta-Mode</span>
                 <h3>Delta Challenges</h3>
-                <p><strong>Description:</strong> Incremental security patches and vulnerability fixes.</p>
-                <p><strong>Scope:</strong> Specific vulnerability remediation</p>
-                <p><strong>Focus:</strong> Code review and patch generation</p>
-                <p><strong>Difficulty:</strong> Medium to High</p>
+                <p><strong>Description:</strong> The challenge “base state” is the modified basis, and the “delta state” is the base state with an additional change (“diff”) applied that represents a delta from the base state.</p>
             </div>
         </div>
     </div>
@@ -332,7 +414,7 @@
     <div class="description-box">
         <h2>Scoring System</h2>
         <p>
-            <strong>POV (Proof of Vulnerability):</strong> 2 points each - Awarded for successfully identifying and demonstrating a security vulnerability.
+            <strong>POV (Proof of Vulnerability):</strong> 2 points each - Awarded when the CRS successfully identifies and demonstrates a security vulnerability, whether it's introduced by a delta commit or present in the full codebase.
         </p>
         <p>
             <strong>Patch:</strong> 6 points each - Awarded for generating effective security patches that fix the identified vulnerabilities.
