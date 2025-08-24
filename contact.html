@@ -9,6 +9,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 2em;
             background-color: #f4f6f8;
+            position: relative;
+        }
+        .logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
         }
         .header {
             text-align: center;
@@ -26,14 +41,14 @@
             display: inline-block;
             margin: 0 10px;
             padding: 10px 20px;
-            background: #007bff;
+            background: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 6px;
             transition: background-color 0.3s;
         }
         .nav-links a:hover {
-            background: #0056b3;
+            background: #c82333;
         }
         .content-section {
             background: white;
@@ -46,7 +61,7 @@
             margin-right: auto;
         }
         .content-section h2 {
-            color: #007bff;
+            color: #dc3545;
             border-bottom: 2px solid #e9ecef;
             padding-bottom: 10px;
             margin-bottom: 20px;
@@ -76,14 +91,14 @@
         .link-card a {
             display: inline-block;
             padding: 8px 16px;
-            background: #007bff;
+            background: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 4px;
             transition: background-color 0.3s;
         }
         .link-card a:hover {
-            background: #0056b3;
+            background: #c82333;
         }
         .github-icon {
             display: inline-block;
@@ -150,6 +165,8 @@
     </style>
 </head>
 <body>
+    <img src="fuzzingbrain.png" alt="FuzzingBrain Logo" class="logo">
+    
     <div class="header">
         <h1>Contact Us</h1>
         <div class="nav-links">
@@ -161,17 +178,14 @@
     <div class="content-section">
         <h2>About AIXCC</h2>
         <p>
-            AIXCC (AI eXploit Code Contest) is a groundbreaking competition that evaluates AI models' capabilities 
-            in identifying and exploiting security vulnerabilities in real-world code. The contest focuses on 
-            testing AI systems' understanding of security concepts, code analysis, and exploit development.
+            The Artificial Intelligence Cyber Challenge (AIxCC) is a two-year cybersecurity competition led by DARPA in partnership with ARPA-H and other U.S. government agencies. The challenge brings together leading researchers and developers in artificial intelligence and cybersecurity to create AI-enabled systems capable of autonomously identifying and fixing vulnerabilities in critical open-source software.
         </p>
         <div class="link-card">
             <h3>AIXCC Official Website</h3>
             <p>
-                Visit the official AIXCC website to learn more about the competition, view detailed information 
-                about challenges, and access resources for participants.
+                Visit the official AIXCC website to learn more about the competition, explore detailed challenge information, and discover more CRS systems developed by other participants.
             </p>
-            <a href="https://aixcc.org" target="_blank">Visit AIXCC Website →</a>
+            <a href="https://aicyberchallenge.com/" target="_blank">Visit AIXCC Website →</a>
         </div>
     </div>
 
@@ -182,23 +196,30 @@
             and contribute to the development of the CRS Leaderboard and related tools.
         </p>
         <div class="link-card">
-            <h3>CRS Leaderboard Repository</h3>
+            <h3>CRS Leaderboard</h3>
             <p>
-                Access the complete source code, submit issues, contribute improvements, and stay updated 
-                with the latest developments.
+                Explore comprehensive performance rankings of leading AI models evaluated on the AIXCC security challenge benchmarks. 
+                Track how different models perform in vulnerability detection and patch generation across various programming languages and challenge types.
             </p>
             <a href="https://github.com/aixcc/crs-leaderboard" target="_blank">
                 <span class="github-icon"></span>View on GitHub →
             </a>
         </div>
         <div class="link-card">
-            <h3>AIXCC Challenge Repository</h3>
+            <h3>AIXCC Challenge Benchmark</h3>
             <p>
-                Explore the official AIXCC challenge repository containing all the security challenges, 
-                evaluation scripts, and benchmark datasets.
-            </p>
-            <a href="https://github.com/aixcc/challenges" target="_blank">
+                Access the complete collection of security challenges used in the AIXCC competition, including C and Java-based vulnerabilities.
+            <a href="https://github.com/Qingxiao-X/AIXCC-Challenge-Benchmark" target="_blank">
                 <span class="github-icon"></span>View Challenges Repository →
+            </a>
+        </div>
+        <div class="link-card">
+            <h3>Our Open Source CRS Repository</h3>
+            <p>
+                Discover our complete CRS implementation, and stay updated with the latest developments.
+            </p>
+            <a href="https://github.com/o2lab/afc-crs-all-you-need-is-a-fuzzing-brain" target="_blank">
+                <span class="github-icon"></span>View CRS Repository →
             </a>
         </div>
     </div>
@@ -208,89 +229,13 @@
         <div class="contact-info">
             <div class="contact-item">
                 <h4>Email</h4>
-                <p>contact@aixcc.org</p>
+                <p>zesheng@tamu.edu</p>
+                <p>qingxiao@tamu.edu</p>
             </div>
             <div class="contact-item">
-                <h4>Discord</h4>
-                <p>Join our community</p>
+                <h4>O2 Research Lab</h4>
+                <p>https://o2lab.github.io/</p>
             </div>
-            <div class="contact-item">
-                <h4>Twitter</h4>
-                <p>@AIXCC_Official</p>
-            </div>
-            <div class="contact-item">
-                <h4>LinkedIn</h4>
-                <p>AIXCC Organization</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-section">
-        <h2>Research Team</h2>
-        <div class="team-section">
-            <h3>Core Contributors</h3>
-            <div class="team-members">
-                <div class="team-member">
-                    <h4>Dr. Security Researcher</h4>
-                    <p>Lead Security Analyst</p>
-                </div>
-                <div class="team-member">
-                    <h4>AI Challenge Designer</h4>
-                    <p>Vulnerability Expert</p>
-                </div>
-                <div class="team-member">
-                    <h4>Platform Developer</h4>
-                    <p>Full-Stack Engineer</p>
-                </div>
-                <div class="team-member">
-                    <h4>Evaluation Specialist</h4>
-                    <p>Metrics & Benchmarking</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-section">
-        <h2>Get Involved</h2>
-        <p>
-            We welcome contributions from the security research community! Whether you're interested in 
-            developing new challenges, improving evaluation metrics, or contributing to the platform, 
-            there are many ways to get involved.
-        </p>
-        <div class="link-card">
-            <h3>Contribute to AIXCC</h3>
-            <p>
-                Learn how you can contribute to the AIXCC project, from submitting new challenges to 
-                improving the evaluation framework.
-            </p>
-            <a href="https://github.com/aixcc/crs-leaderboard/blob/main/CONTRIBUTING.md" target="_blank">
-                <span class="github-icon"></span>Contribution Guidelines →
-            </a>
-        </div>
-        <div class="link-card">
-            <h3>Report Issues</h3>
-            <p>
-                Found a bug or have a suggestion? Help us improve by reporting issues or requesting new features.
-            </p>
-            <a href="https://github.com/aixcc/crs-leaderboard/issues" target="_blank">
-                <span class="github-icon"></span>Report an Issue →
-            </a>
-        </div>
-    </div>
-
-    <div class="content-section">
-        <h2>Stay Updated</h2>
-        <p>
-            Follow us on social media and subscribe to our newsletter to stay informed about the latest 
-            developments, new challenges, and upcoming events.
-        </p>
-        <div class="link-card">
-            <h3>Newsletter</h3>
-            <p>
-                Subscribe to our newsletter for updates on new challenges, competition results, and 
-                research findings.
-            </p>
-            <a href="https://aixcc.org/newsletter" target="_blank">Subscribe to Newsletter →</a>
         </div>
     </div>
 </body>
