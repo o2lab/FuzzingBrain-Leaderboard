@@ -9,6 +9,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 2em;
             background-color: #f4f6f8;
+            position: relative;
+        }
+        .logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
         }
         h1 {
             color: #222;
@@ -74,7 +89,7 @@
             background-color: white;
         }
         th {
-            background: linear-gradient(90deg, #007bff, #00a2ff);
+            background: linear-gradient(90deg, #dc3545, #e91e63);
             color: white;
             text-transform: uppercase;
             font-size: 14px;
@@ -90,7 +105,7 @@
             background-color: #f9f9f9;
         }
         tr:hover td {
-            background-color: #eaf4ff;
+            background-color: #ffe6e6;
         }
         .rank-1 td:first-child {
             color: gold;
@@ -110,11 +125,11 @@
         details summary {
             cursor: pointer;
             font-weight: 600;
-            color: #007bff;
+            color: #dc3545;
             padding: 5px 0;
         }
         details summary:hover {
-            color: #0056b3;
+            color: #c82333;
         }
         .details-container {
             padding: 10px 0 0 20px;
@@ -147,7 +162,7 @@
         .description-box h2 {
             margin-top: 0;
             font-size: 16px;
-            color: #007bff;
+            color: #dc3545;
         }
         .loading {
             text-align: center;
@@ -166,7 +181,7 @@
         }
         .current-mode {
             text-align: center;
-            color: #007bff;
+            color: #dc3545;
             font-weight: 600;
             margin: 10px 0;
             font-size: 16px;
@@ -174,6 +189,8 @@
     </style>
 </head>
 <body>
+    <img src="fuzzingbrain.png" alt="FuzzingBrain Logo" class="logo">
+    
     <h1>CRS Leaderboard</h1>
 
     <div class="nav-links">
